@@ -23,43 +23,42 @@ async fn main(_spawner: Spawner) {
     sequential_storage::map::store_item(
         &mut flash,
         FLASH_RANGE,
-        NoCache::new(),
+        &mut NoCache::new(),
         &mut data_buffer,
         &ConfigItem::A,
     )
     .await
-    .unwrap();
+    .ok();
 
     sequential_storage::map::store_item(
         &mut flash,
         FLASH_RANGE,
-        NoCache::new(),
+        &mut NoCache::new(),
         &mut data_buffer,
         &ConfigItem::B(123),
     )
     .await
-    .unwrap();
+    .ok();
 
     sequential_storage::map::store_item(
         &mut flash,
         FLASH_RANGE,
-        NoCache::new(),
+        &mut NoCache::new(),
         &mut data_buffer,
         &ConfigItem::C(0.123),
     )
     .await
-    .unwrap();
+    .ok();
 
     let _fetched = sequential_storage::map::fetch_item::<ConfigItem, _>(
         &mut flash,
         FLASH_RANGE,
-        NoCache::new(),
+        &mut NoCache::new(),
         &mut data_buffer,
         1,
     )
     .await
-    .unwrap()
-    .unwrap();
+    .ok();
 
     loop {
         led.set_high();

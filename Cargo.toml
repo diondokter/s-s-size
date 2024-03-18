@@ -27,7 +27,7 @@ embedded-hal = { version = "1.0" }
 embedded-hal-async = { version = "1.0" }
 embedded-hal-bus = { version = "0.1", features = ["async"] }
 
-sequential-storage = { version = "1.0.0", features = ["defmt-03"] }
+sequential-storage = { path = "../sequential-storage", features = ["defmt-03"] }
 
 [profile.release]
 lto = true
